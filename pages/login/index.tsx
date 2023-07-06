@@ -81,6 +81,7 @@ const Seperator = styled.div`
   align-items: center;
   p {
     width: 300px;
+    font-weight: 600;
     text-align: center;
     font-size: 1.5rem;
   }
