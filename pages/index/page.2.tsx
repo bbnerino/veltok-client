@@ -30,6 +30,7 @@ const Wrapper = styled.main`
   color: #fff;
   font-size: 2rem;
   height: 100vh;
+  min-height: 1000px;
   display: flex;
   flex-direction: column;
   position: relative;

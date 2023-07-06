@@ -24,6 +24,7 @@ const Wrapper = styled.div`
   color: #fff;
   font-size: 2rem;
   height: 50vh;
+  min-height: 500px;
   display: flex;
   flex-direction: column;
   position: relative;

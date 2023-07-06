@@ -29,10 +29,11 @@ const Page3 = () => {
   );
 };
 const Wrapper = styled.main`
-  background-color: #4cc9f0;
+  background-color: #b2da63;
   color: #fff;
   font-size: 2rem;
-  height: 150vh;
+  height: 120vh;
+  min-height: 1500px;
   display: flex;
   flex-direction: column;
   position: relative;
