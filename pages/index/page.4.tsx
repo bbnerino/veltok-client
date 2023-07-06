@@ -1,12 +1,20 @@
-import LoginButton from "@/components/button/login.button";
+import MainLoginButton from "@/components/button/main.login.button";
+import { useRouter } from "next/router";
 import React from "react";
 import { styled } from "styled-components";
 
 const Page4 = () => {
+  const router = useRouter();
+  const goLogin = () => {
+    router.push("/login");
+  };
+  const goSignUp = () => {
+    router.push("/signup");
+  };
   return (
     <Wrapper>
-      <LoginButton>Login</LoginButton>
-      <LoginButton>Join Now</LoginButton>
+      <MainLoginButton onClick={goLogin}>Login</MainLoginButton>
+      <MainLoginButton onClick={goSignUp}>Join Now</MainLoginButton>
       <p>To The Top</p>
     </Wrapper>
   );
