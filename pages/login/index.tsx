@@ -1,3 +1,5 @@
+import { LoginForm } from "@/@types/auth/auth.login.form";
+import { AuthService } from "@/@types/auth/auth.service";
 import LoginButton from "@/components/button/login.button";
 import OauthLoginButton from "@/components/button/oauth.button";
 import Input from "@/components/input/input";
@@ -10,17 +12,33 @@ const LoginPage = () => {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const onSubmit = () => {};
-  const goSignup = () => {
-    router.push("/signup");
+
+  const goSignup = () => router.push("/signup");
+  const goMain = () => router.push("/");
+
+  const onSubmit = () => {
+    const loginData = {
+      email,
+      password,
+    } as LoginForm;
+    AuthService.login(loginData).then((res) => {
+      if (res) {
+        alert("로그인 성공");
+      } else {
+        alert("로그인 실패");
+      }
+    });
   };
-  const goMain = () => {
-    router.push("/");
-  }
   return (
     <Wrapper>
       <div className="logo">
-        <Image onClick={goMain} src="/images/logo.png" alt="logo" width={350} height={100} />
+        <Image
+          onClick={goMain}
+          src="/images/logo.png"
+          alt="logo"
+          width={350}
+          height={100}
+        />
       </div>
       <InputWrap>
         <Input

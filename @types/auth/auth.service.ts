@@ -23,7 +23,7 @@ export const AuthService = {
 
   login: async (data: LoginForm) => {
     try {
-      const result = await AXIOS_AUTH.post("/api/auth/login", data);
+      const result = await AXIOS_AUTH.post(`${AUTH_API}/login`, data);
       localStorage.setItem("token", result.data.token);
       return { data: result.data as User };
     } catch (err) {
