@@ -14,10 +14,13 @@ const LoginPage = () => {
   const goSignup = () => {
     router.push("/signup");
   };
+  const goMain = () => {
+    router.push("/");
+  }
   return (
     <Wrapper>
       <div className="logo">
-        <Image src="/images/logo.png" alt="logo" width={350} height={100} />
+        <Image onClick={goMain} src="/images/logo.png" alt="logo" width={350} height={100} />
       </div>
       <InputWrap>
         <Input
@@ -55,6 +58,7 @@ const Wrapper = styled.section`
     margin: auto;
     margin-top: 10rem;
     width: 350px;
+    cursor: pointer;
   }
 `;
 const InputWrap = styled.div`

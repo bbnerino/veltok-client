@@ -3,6 +3,8 @@ import { User } from "../user/user.entity";
 import { LoginForm } from "./auth.login.form";
 import { RegisterForm } from "./auth.register.form";
 
+const AUTH_API = "/api/auth";
+
 export const AuthService = {
   register: async (data: RegisterForm) => {
     const formData = new FormData();
@@ -13,7 +15,7 @@ export const AuthService = {
       formData.append("profileImage", data.profileImage);
     }
     try {
-      await AXIOS_AUTH.post("/api/auth/register", formData);
+      await AXIOS_AUTH.post(`${AUTH_API}/register`, formData);
     } catch (err) {
       return { error: err };
     }
