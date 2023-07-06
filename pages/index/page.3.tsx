@@ -5,9 +5,10 @@ import { styled } from "styled-components";
 const Page3 = () => {
   return (
     <Wrapper>
-      <>
+      <div data-aos="fade-up">
         <p className="text text1">Link with Github</p>
         <p className="sub_text sub_text1">share with your friends</p>
+
         <div className="github_wrapper">
           <Image
             src="/images/github.png"
@@ -16,15 +17,15 @@ const Page3 = () => {
             height={200}
           />
         </div>
-      </>
-      <>
+      </div>
+      <div data-aos="fade-up">
         <p className="text text2">Community</p>
         <p className="sub_text sub_text2">Communicate with Colleagues</p>
         <div className="community_wrapper">
           <p className="big_text">1000 +</p>
           <p className="sub_text">people helped</p>
         </div>
-      </>
+      </div>
     </Wrapper>
   );
 };
@@ -120,3 +121,9 @@ const Wrapper = styled.main`
   }
 `;
 export default Page3;
+
+export const getStaticProps = async () => {
+  return {
+    props: {},
+  };
+};

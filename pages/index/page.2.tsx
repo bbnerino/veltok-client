@@ -5,23 +5,29 @@ import { styled } from "styled-components";
 const Page2 = () => {
   return (
     <Wrapper>
-      <p className="text">
-        Grow with Veltok Communicate with friends and have fun
-      </p>
-      <Image
-        src="/images/rainbow_spray.png"
-        alt="rainbow_spray"
-        className="rainbow_spray"
-        width={500}
-        height={450}
-      />
-      <Image
-        className="logo"
-        src="/images/logo.png"
-        alt="logo"
-        width={350}
-        height={100}
-      />
+      <div data-aos="fade-left">
+        <p className="text">
+          Grow with Veltok Communicate with friends and have fun
+        </p>
+      </div>
+      <div data-aos="fade-right">
+        <Image
+          src="/images/rainbow_spray.png"
+          alt="rainbow_spray"
+          className="rainbow_spray"
+          width={500}
+          height={450}
+        />
+      </div>
+      <div data-aos="fade-up">
+        <Image
+          className="logo"
+          src="/images/logo.png"
+          alt="logo"
+          width={350}
+          height={100}
+        />
+      </div>
     </Wrapper>
   );
 };
@@ -54,8 +60,13 @@ const Wrapper = styled.main`
     font-weight: 700;
     line-height: 1.5;
     width: 400px;
-    color: #3A0CA3;
-    z-index: 1;
+    color: #3a0ca3;
+    z-index: 2;
   }
 `;
 export default Page2;
+export const getStaticProps = async () => {
+  return {
+    props: {},
+  };
+};

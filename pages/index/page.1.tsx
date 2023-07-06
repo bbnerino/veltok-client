@@ -5,19 +5,23 @@ import { styled } from "styled-components";
 const Page1 = () => {
   return (
     <Wrapper>
-      <Image
-        src="/images/red_spray.png"
-        alt="red_spray"
-        width={350}
-        height={450}
-      />
-      <Image
-        className="logo"
-        src="/images/logo.png"
-        alt="logo"
-        width={350}
-        height={100}
-      />
+      <div data-aos="fade-up">
+        <Image
+          src="/images/red_spray.png"
+          alt="red_spray"
+          width={350}
+          height={450}
+        />
+      </div>
+      <div data-aos="fade-right">
+        <Image
+          className="logo"
+          src="/images/logo.png"
+          alt="logo"
+          width={350}
+          height={100}
+        />
+      </div>
     </Wrapper>
   );
 };
@@ -37,3 +41,8 @@ const Wrapper = styled.main`
   }
 `;
 export default Page1;
+export const getStaticProps = async () => {
+  return {
+    props: {},
+  };
+};

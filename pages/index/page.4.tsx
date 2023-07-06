@@ -13,9 +13,10 @@ const Page4 = () => {
   };
   return (
     <Wrapper>
-      <MainLoginButton onClick={goLogin}>Login</MainLoginButton>
-      <MainLoginButton onClick={goSignUp}>Join Now</MainLoginButton>
-      <p>To The Top</p>
+      <div data-aos="fade-up">
+        <MainLoginButton onClick={goLogin}>Login</MainLoginButton>
+        <MainLoginButton onClick={goSignUp}>Join Now</MainLoginButton>
+      </div>
     </Wrapper>
   );
 };
@@ -45,3 +46,8 @@ const Wrapper = styled.div`
 `;
 
 export default Page4;
+export const getStaticProps = async () => {
+  return {
+    props: {},
+  };
+};

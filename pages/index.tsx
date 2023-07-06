@@ -1,11 +1,10 @@
 import Head from "next/head";
 import { Inter } from "next/font/google";
-import styled from "styled-components";
-import Image from "next/image";
 import Page1 from "./index/page.1";
 import Page2 from "./index/page.2";
 import Page3 from "./index/page.3";
 import Page4 from "./index/page.4";
+import { useEffect } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,3 +24,9 @@ export default function Home() {
     </>
   );
 }
+
+export const getStaticProps = async () => {
+  return {
+    props: {},
+  };
+};
