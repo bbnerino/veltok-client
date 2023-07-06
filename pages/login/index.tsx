@@ -2,12 +2,18 @@ import LoginButton from "@/components/button/login.button";
 import OauthLoginButton from "@/components/button/oauth.button";
 import Input from "@/components/input/input";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { styled } from "styled-components";
 
 const LoginPage = () => {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const onSubmit = () => {};
+  const goSignup = () => {
+    router.push("/signup");
+  };
   return (
     <Wrapper>
       <div className="logo">
@@ -28,7 +34,8 @@ const LoginPage = () => {
         <div className="forget_password">
           <p>Forget password?</p>
         </div>
-        <LoginButton onClick={() => {}}>Log In</LoginButton>
+        <LoginButton type="login" onClick={onSubmit} />
+        <LoginButton type="signup" onClick={goSignup} />
       </InputWrap>
       <Seperator>
         <div className="line" />
@@ -42,7 +49,7 @@ const LoginPage = () => {
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.section`
   background-color: #76b1f5;
   .logo {
     margin: auto;
@@ -74,7 +81,7 @@ const InputWrap = styled.div`
 `;
 const Seperator = styled.div`
   margin: auto;
-  margin-top: 4rem;
+  margin-top: 2rem;
   width: 400px;
   display: flex;
   justify-content: center;

@@ -29,11 +29,9 @@ const Wrapper = styled.input`
   height: 50px;
   border: 0.5px solid #b6b6b6;
   border-radius: 10px;
-
   padding-left: 20px;
-
   margin-bottom: 1rem;
-  font-size: 1.2rem;
+  font-size: 1rem;
   &:focus {
     outline: none;
   }
