@@ -11,17 +11,15 @@ const SignUp3 = () => {
   const [githubId, setGithubId] = useState("");
   const router = useRouter();
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     const registerData = {
       email: router.query.email,
       password: router.query.password,
       nickname: router.query.nickname,
     } as RegisterForm;
     if (githubId !== "") registerData.githubId = githubId;
-    AuthService.register(registerData).then((res) => {
-      alert("회원가입이 완료되었습니다.");
-      router.push("/login");
-    });
+    await AuthService.register(registerData);
+    router.push("/login");
   };
   return (
     <SignupFormComponent>

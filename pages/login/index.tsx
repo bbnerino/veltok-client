@@ -21,13 +21,7 @@ const LoginPage = () => {
       email,
       password,
     } as LoginForm;
-    AuthService.login(loginData).then((res) => {
-      if (res) {
-        alert("로그인 성공");
-      } else {
-        alert("로그인 실패");
-      }
-    });
+    AuthService.login(loginData);
   };
   return (
     <Wrapper>

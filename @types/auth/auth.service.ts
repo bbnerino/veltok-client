@@ -16,8 +16,9 @@ export const AuthService = {
     }
     try {
       await AXIOS_AUTH.post(`${AUTH_API}/register`, formData);
+      alert("회원가입이 완료되었습니다.");
     } catch (err) {
-      return { error: err };
+      alert(err);
     }
   },
 
