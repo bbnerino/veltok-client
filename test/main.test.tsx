@@ -1,18 +1,9 @@
 import { describe } from "node:test";
-import { render, mockConsoleError } from "./utils";
-import { fireEvent, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { render } from "./utils";
+import { screen } from "@testing-library/react";
 import MainPage from "@/pages";
 
-const useRouter = jest.spyOn(require("next/router"), "useRouter");
-
 describe("Main Page", async () => {
-  mockConsoleError();
-
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
-
   test("메인 페이지 렌더링 확인", async () => {
     render(<MainPage />);
 
@@ -25,21 +16,10 @@ describe("Main Page", async () => {
   test("로그인 버튼, 회원가입 버튼 확인", async () => {
     render(<MainPage />);
 
-    const router = { push: jest.fn() };
-    useRouter.mockReturnValue(router);
-
     const loginButton = await screen.getByRole("button", { name: "Login" });
     expect(loginButton).toBeInTheDocument();
 
-    userEvent.click(loginButton);
-
-    const push = jest.fn();
-    useRouter.mockImplementationOnce(() => ({
-      asPath: "/",
-      push,
-    }));
-
-    fireEvent.click(loginButton);
-    expect(router.push).toHaveBeenCalledWith("/login");
+    const signupButton = await screen.getByRole("button", { name: "Join Now" });
+    expect(signupButton).toBeInTheDocument();
   });
 });

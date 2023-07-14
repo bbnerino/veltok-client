@@ -16,7 +16,7 @@ const SignupFormComponent = ({ children }: Props) => {
         <Image
           onClick={() => router.push("/")}
           src="/images/logo.png"
-          alt="logo"
+          alt="logo_image"
           width={350}
           height={100}
         />

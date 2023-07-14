@@ -65,7 +65,7 @@ const Signup1 = ({
 
       <ErrorMessage>
         {emailError && (
-          <p className="error">
+          <p className="error" data-testid="email-error">
             Not a valid email address. Please enter a valid email address.
           </p>
         )}
