@@ -1,33 +1,31 @@
-import React, { useEffect, useState } from "react";
-import SignupFormComponent from "../component/signup.form";
+import { useState } from "react";
 import Input from "@/components/input/input";
 import LoginButton from "@/components/button/login.button";
-import { useRouter } from "next/router";
 import { styled } from "styled-components";
 import { AUTH_REGEX } from "@/@types/auth/auth.regex";
+import { SignupChapter } from ".";
 
-const Signup2 = () => {
-  const router = useRouter();
-  const [nickname, setNickname] = useState("");
-  const [passwordCheckError, setPasswordCheckError] = useState(false);
+interface Props {
+  setChapter: React.Dispatch<React.SetStateAction<SignupChapter>>;
+  nickname: string;
+  setNickname: React.Dispatch<React.SetStateAction<string>>;
+}
 
-  const goNext = () => {
-    router.push({
-      pathname: "/signup/3",
-      query: { ...router.query, nickname },
-    });
-  };
+const Signup2 = ({ setChapter, nickname, setNickname }: Props) => {
+  const [nicknameCheckError, setNickNameCheckError] = useState(false);
+
+  const goNext = () => setChapter(3);
 
   const handleNickname = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNickname(e.target.value);
     if (AUTH_REGEX.NICKNAME.test(nickname)) {
-      return setPasswordCheckError(false);
+      return setNickNameCheckError(false);
     }
-    return setPasswordCheckError(true);
+    return setNickNameCheckError(true);
   };
 
   return (
-    <SignupFormComponent>
+    <>
       <p className="content">Please enter a nickname to use in Veltok</p>
       <Input
         placeholder="Nickname"
@@ -35,14 +33,14 @@ const Signup2 = () => {
         onChange={handleNickname}
       />
       <ErrorMessage>
-        {passwordCheckError && (
+        {nicknameCheckError && (
           <p className="error">
             Nickname must be between 4 and 16 characters long
           </p>
         )}
       </ErrorMessage>
       <LoginButton type="next" onClick={goNext} />
-    </SignupFormComponent>
+    </>
   );
 };
 const ErrorMessage = styled.div`
