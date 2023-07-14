@@ -1,9 +1,9 @@
 import Head from "next/head";
 import { Inter } from "next/font/google";
-import Page1 from "./index/page.1";
-import Page2 from "./index/page.2";
-import Page3 from "./index/page.3";
-import Page4 from "./index/page.4";
+import Page1 from "./main/page.1";
+import Page2 from "./main/page.2";
+import Page3 from "./main/page.3";
+import Page4 from "./main/page.4";
 import { useEffect } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
