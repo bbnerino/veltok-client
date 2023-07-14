@@ -4,7 +4,7 @@ import { styled } from "styled-components";
 
 const Page1 = () => {
   return (
-    <Wrapper>
+    <Wrapper data-testid="main-page-1">
       <div data-aos="fade-up">
         <Image
           src="/images/red_spray.png"
@@ -25,7 +25,7 @@ const Page1 = () => {
     </Wrapper>
   );
 };
-const Wrapper = styled.main`
+const Wrapper = styled.section`
   background-color: #76b1f5;
   color: #fff;
   font-size: 2rem;

@@ -24,7 +24,7 @@ const LoginPage = () => {
     AuthService.login(loginData);
   };
   return (
-    <Wrapper>
+    <Wrapper data-testid="login-page">
       <div className="logo">
         <Image
           onClick={goMain}

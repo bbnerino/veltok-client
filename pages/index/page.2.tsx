@@ -4,7 +4,7 @@ import { styled } from "styled-components";
 
 const Page2 = () => {
   return (
-    <Wrapper>
+    <Wrapper data-testid="main-page-2">
       <div data-aos="fade-left">
         <p className="text">
           Grow with Veltok Communicate with friends and have fun
@@ -31,7 +31,7 @@ const Page2 = () => {
     </Wrapper>
   );
 };
-const Wrapper = styled.main`
+const Wrapper = styled.section`
   background-color: #4cc9f0;
   color: #fff;
   font-size: 2rem;

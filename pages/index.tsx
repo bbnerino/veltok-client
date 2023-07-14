@@ -17,10 +17,12 @@ export default function MainPage() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Page1 />
-      <Page2 />
-      <Page3 />
-      <Page4 />
+      <main>
+        <Page1 />
+        <Page2 />
+        <Page3 />
+        <Page4 />
+      </main>
     </>
   );
 }

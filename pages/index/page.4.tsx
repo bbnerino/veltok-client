@@ -12,7 +12,7 @@ const Page4 = () => {
     router.push("/signup");
   };
   return (
-    <Wrapper>
+    <Wrapper data-testid="main-page-4">
       <div data-aos="fade-up">
         <MainLoginButton onClick={goLogin}>Login</MainLoginButton>
         <MainLoginButton onClick={goSignUp}>Join Now</MainLoginButton>
@@ -20,7 +20,7 @@ const Page4 = () => {
     </Wrapper>
   );
 };
-const Wrapper = styled.div`
+const Wrapper = styled.section`
   background-color: #49debe;
   color: #fff;
   font-size: 2rem;

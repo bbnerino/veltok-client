@@ -4,7 +4,7 @@ import { styled } from "styled-components";
 
 const Page3 = () => {
   return (
-    <Wrapper>
+    <Wrapper data-testid="main-page-3">
       <div data-aos="fade-up">
         <p className="text text1">Link with Github</p>
         <p className="sub_text sub_text1">share with your friends</p>
@@ -29,7 +29,7 @@ const Page3 = () => {
     </Wrapper>
   );
 };
-const Wrapper = styled.main`
+const Wrapper = styled.section`
   background-color: #b2da63;
   color: #fff;
   font-size: 2rem;
