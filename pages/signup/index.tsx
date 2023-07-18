@@ -26,8 +26,10 @@ const SignupPage = ({ chapterData = 1 }: Props) => {
       nickname: nickname,
     } as RegisterForm;
     if (githubId !== "") registerData.githubId = githubId;
-    await AuthService.register(registerData, () => {
+    AuthService.register(registerData).then((res) => {
       setChapter(4);
+      setNickname(res.nickName);
+      console.log(res);
     });
   };
 

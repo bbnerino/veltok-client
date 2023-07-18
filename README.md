@@ -41,3 +41,38 @@ export default class MyDocument extends Document {
   }
 }
 ```
+
+# Axios Mock 데이터 만들기
+
+jest-mock-axios 라이브러리를 이용해서 axios의 mock 데이터를 만들어준다.
+
+`__mocks__` 폴더에 axios.ts 를 만들어준다.
+
+```ts
+import mockAxios from "jest-mock-axios";
+export default mockAxios;
+```
+
+그리고 이 mockAxios를 불러와 사용해준다.
+
+```ts
+describe("회원가입 3페이지", async () => {
+  test("다음 페이지로 넘어가기 시도", async () => {
+    // axios.post 를 mock 함수로 오버라이드 한다.
+    mockAxios.post.mockResolvedValueOnce({
+      status: 200,
+      data: {
+        nickName: "louie",
+      },
+    });
+
+    render(<SignupPage chapterData={3} />);
+    const $nextBtn = await screen.findByText("Sign Up");
+    await userEvent.click($nextBtn);
+    await delay(500);
+
+    const $page4 = await screen.findByText("louie님");
+    expect($page4).toBeInTheDocument();
+  });
+});
+```

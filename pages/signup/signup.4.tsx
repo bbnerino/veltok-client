@@ -8,14 +8,9 @@ interface Props {
   nickname: string;
 }
 
-const SignUp4 = ({ nickname = "dongdong" }: Props) => {
+const SignUp4 = ({ nickname }: Props) => {
   const router = useRouter();
   const goLogin = () => router.push("/login");
-  useEffect(() => {
-    // setTimeout(() => {
-    //   router.push("/login");
-    // }, 5000);
-  }, []);
   return (
     <Wrapper>
       <h1 className="name">{nickname}님 </h1>

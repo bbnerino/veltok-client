@@ -6,7 +6,7 @@ import { RegisterForm } from "./auth.register.form";
 const AUTH_API = "/api/auth";
 
 export const AuthService = {
-  register: async (data: RegisterForm, func: Function) => {
+  register: async (data: RegisterForm) => {
     const formData = new FormData();
     formData.append("email", data.email);
     formData.append("password", data.password);
@@ -14,12 +14,9 @@ export const AuthService = {
     if (data.profileImage) {
       formData.append("profileImage", data.profileImage);
     }
-    try {
-      await AXIOS_AUTH.post(`${AUTH_API}/register`, formData);
-      func();
-    } catch (err) {
-      alert(err);
-    }
+
+    const response = await AXIOS_AUTH.post(`${AUTH_API}/register`, formData);
+    return response.data;
   },
 
   login: async (data: LoginForm) => {

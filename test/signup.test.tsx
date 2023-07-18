@@ -1,13 +1,13 @@
-import { describe } from "node:test";
-import { render, screen } from "@testing-library/react";
+import { describe, mock } from "node:test";
+import { render, screen, waitFor } from "@testing-library/react";
 import SignupPage from "@/pages/signup";
 import userEvent from "@testing-library/user-event";
 import { delay } from "./utils";
+import mockAxios from "../__mocks__/axios";
 
 describe("회원가입창 확인", async () => {
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
+  afterEach(() => jest.clearAllMocks());
+
   describe("회원가입 1페이지", async () => {
     test("회원가입 페이지의 로고 확인", async () => {
       render(<SignupPage />);
@@ -110,10 +110,21 @@ describe("회원가입창 확인", async () => {
   });
   describe("회원가입 3페이지", async () => {
     test("다음 페이지로 넘어가기 시도", async () => {
+      // axios.post 를 mock 함수로 오버라이드 한다.
+      mockAxios.post.mockResolvedValueOnce({
+        status: 200,
+        data: {
+          nickName: "louie",
+        },
+      });
+
       render(<SignupPage chapterData={3} />);
       const $nextBtn = await screen.findByText("Sign Up");
       await userEvent.click($nextBtn);
-      await delay(100)
+      await delay(500);
+
+      const $page4 = await screen.findByText("louie님");
+      expect($page4).toBeInTheDocument();
     });
   });
 });
