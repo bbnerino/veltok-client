@@ -5,12 +5,13 @@ import Signup2 from "./signup.2";
 import SignUp3 from "./signup.3";
 import { RegisterForm } from "@/@types/auth/auth.register.form";
 import { AuthService } from "@/@types/auth/auth.service";
-export type SignupChapter = 1 | 2 | 3;
+import SignUp4 from "./signup.4";
+export type SignupChapter = 1 | 2 | 3 | 4;
 interface Props {
   chapterData?: SignupChapter;
 }
 
-const SignupPage = ({ chapterData = 1}: Props) => {
+const SignupPage = ({ chapterData = 1 }: Props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [nickname, setNickname] = useState("");
@@ -25,7 +26,9 @@ const SignupPage = ({ chapterData = 1}: Props) => {
       nickname: nickname,
     } as RegisterForm;
     if (githubId !== "") registerData.githubId = githubId;
-    await AuthService.register(registerData);
+    await AuthService.register(registerData, () => {
+      setChapter(4);
+    });
   };
 
   return (
@@ -53,6 +56,7 @@ const SignupPage = ({ chapterData = 1}: Props) => {
           onSubmit={onSubmit}
         />
       )}
+      {chapter === 4 && <SignUp4 nickname={nickname} />}
     </SignupFormComponent>
   );
 };

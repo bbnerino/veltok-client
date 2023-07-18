@@ -6,7 +6,7 @@ import { RegisterForm } from "./auth.register.form";
 const AUTH_API = "/api/auth";
 
 export const AuthService = {
-  register: async (data: RegisterForm) => {
+  register: async (data: RegisterForm, func: Function) => {
     const formData = new FormData();
     formData.append("email", data.email);
     formData.append("password", data.password);
@@ -16,7 +16,7 @@ export const AuthService = {
     }
     try {
       await AXIOS_AUTH.post(`${AUTH_API}/register`, formData);
-      alert("회원가입이 완료되었습니다.");
+      func();
     } catch (err) {
       alert(err);
     }

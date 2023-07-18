@@ -2,6 +2,7 @@ import { describe } from "node:test";
 import { render, screen } from "@testing-library/react";
 import SignupPage from "@/pages/signup";
 import userEvent from "@testing-library/user-event";
+import { delay } from "./utils";
 
 describe("회원가입창 확인", async () => {
   afterEach(() => {
@@ -112,6 +113,7 @@ describe("회원가입창 확인", async () => {
       render(<SignupPage chapterData={3} />);
       const $nextBtn = await screen.findByText("Sign Up");
       await userEvent.click($nextBtn);
+      await delay(100)
     });
   });
 });

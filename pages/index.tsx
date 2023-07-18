@@ -4,7 +4,6 @@ import Page1 from "./main/page.1";
 import Page2 from "./main/page.2";
 import Page3 from "./main/page.3";
 import Page4 from "./main/page.4";
-import { useEffect } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 

@@ -1,4 +1,3 @@
-import LoginButton from "@/components/button/login.button";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React from "react";
@@ -39,6 +38,7 @@ const InputWrap = styled.div`
   margin-top: 5rem;
   width: 400px;
   text-align: center;
+
   .image {
     margin: auto;
   }

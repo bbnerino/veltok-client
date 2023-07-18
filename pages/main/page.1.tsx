@@ -26,7 +26,8 @@ const Page1 = () => {
   );
 };
 const Wrapper = styled.section`
-  background-color: #76b1f5;
+  background: linear-gradient(-45deg, #ffffff, #6773fc, #40f682, #1bedbc);
+  background-size: 400% 400%;
   color: #fff;
   font-size: 2rem;
   height: 100vh;
@@ -34,10 +35,20 @@ const Wrapper = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  img {
-  }
   .logo {
     margin-top: 4rem;
+  }
+  animation: backgroundRotate ease 10s infinite;
+  @keyframes backgroundRotate {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
   }
 `;
 export default Page1;
