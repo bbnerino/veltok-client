@@ -6,14 +6,17 @@ import SignUp3 from "./signup.3";
 import { RegisterForm } from "@/@types/auth/auth.register.form";
 import { AuthService } from "@/@types/auth/auth.service";
 export type SignupChapter = 1 | 2 | 3;
+interface Props {
+  chapterData?: SignupChapter;
+}
 
-const SignupPage = () => {
+const SignupPage = ({ chapterData = 1}: Props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [nickname, setNickname] = useState("");
   const [githubId, setGithubId] = useState("");
 
-  const [chapter, setChapter] = useState<SignupChapter>(1);
+  const [chapter, setChapter] = useState<SignupChapter>(chapterData);
 
   const onSubmit = async () => {
     const registerData = {

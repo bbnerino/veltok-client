@@ -25,6 +25,7 @@ const Signup1 = ({
   const [passwordCheckError, setPasswordCheckError] = useState(false);
   const [passwordCheck, setPasswordCheck] = useState("");
 
+  const [nextError, setNextError] = useState("");
   const handleEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
     if (AUTH_REGEX.EMAIL.test(e.target.value)) return setEmailError(false);
@@ -49,19 +50,24 @@ const Signup1 = ({
   };
   const goNext = () => {
     if (AUTH_REGEX.EMAIL.test(email) === false) {
-      return alert("이메일 형식이 올바르지 않습니다.");
+      return setNextError("Email format is incorrect.");
     }
     if (AUTH_REGEX.PASSWORD.test(password) === false) {
-      return alert("비밀번호 형식이 올바르지 않습니다.");
+      return setNextError("The password format is incorrect.");
     }
     if (password !== passwordCheck) {
-      return alert("비밀번호가 일치하지 않습니다.");
+      return setNextError("Passwords do not match.");
     }
     setChapter(2);
   };
   return (
     <>
-      <Input placeholder="E-mail" value={email} onChange={handleEmail} />
+      <Input
+        placeholder="E-mail"
+        data-testid="email-input"
+        value={email}
+        onChange={handleEmail}
+      />
 
       <ErrorMessage>
         {emailError && (
@@ -78,7 +84,7 @@ const Signup1 = ({
       />
       <ErrorMessage>
         {passwordError && (
-          <p className="error">
+          <p className="error" data-testid="password-error">
             Password must be at least 8 characters long and contain at least one
           </p>
         )}
@@ -91,12 +97,17 @@ const Signup1 = ({
       />
       <ErrorMessage>
         {passwordCheckError && (
-          <p className="error">
+          <p className="error" data-testid="password-check-error">
             Password is not the same as the one you entered.
           </p>
         )}
       </ErrorMessage>
-      <LoginButton type="next" onClick={goNext} />
+      <LoginButton type="next" data-testid="next-btn" onClick={goNext} />
+      <ErrorMessage>
+        <p className="error" data-testid="next-error">
+          {nextError}
+        </p>
+      </ErrorMessage>
     </>
   );
 };

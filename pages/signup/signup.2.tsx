@@ -12,16 +12,23 @@ interface Props {
 }
 
 const Signup2 = ({ setChapter, nickname, setNickname }: Props) => {
-  const [nicknameCheckError, setNickNameCheckError] = useState(false);
-
-  const goNext = () => setChapter(3);
+  const [nicknameCheckError, setNickNameCheckError] = useState("");
+  const [nextError, setNextError] = useState("");
+  const goNext = () => {
+    if (AUTH_REGEX.NICKNAME.test(nickname)) {
+      setChapter(3);
+    }
+    setNextError("Check your nickname");
+  };
 
   const handleNickname = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNickname(e.target.value);
-    if (AUTH_REGEX.NICKNAME.test(nickname)) {
-      return setNickNameCheckError(false);
+    if (!AUTH_REGEX.NICKNAME.test(nickname)) {
+      return setNickNameCheckError(
+        "Nickname must be between 4 and 16 characters long"
+      );
     }
-    return setNickNameCheckError(true);
+    return setNickNameCheckError("");
   };
 
   return (
@@ -33,13 +40,18 @@ const Signup2 = ({ setChapter, nickname, setNickname }: Props) => {
         onChange={handleNickname}
       />
       <ErrorMessage>
-        {nicknameCheckError && (
-          <p className="error">
-            Nickname must be between 4 and 16 characters long
+        {!!nicknameCheckError.length && (
+          <p className="error" data-testid="nickname-error">
+            {nicknameCheckError}
           </p>
         )}
       </ErrorMessage>
       <LoginButton type="next" onClick={goNext} />
+      <ErrorMessage>
+        <p className="error" data-testid="check-nickname">
+          {nextError}
+        </p>
+      </ErrorMessage>
     </>
   );
 };
