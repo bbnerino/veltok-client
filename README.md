@@ -76,3 +76,41 @@ describe("회원가입 3페이지", async () => {
   });
 });
 ```
+
+# styled component 이슈
+
+Next.js에서 Prop `className` did not match 경고가 뜨는 이유
+
+Next.js에서 styled-components를 사용할 때 \_document를 따로 설정해서 SSR될 때 CSS가 head에 주입되도록 해야 한다. 만약 따로 설정하지 않는다면,styled-components가 적용되지 않은 상태로 렌더링될 수 있다.
+
+하지만 저 에러가 뜨는 이유는 서버와 클라이언트의 클래스명이 다른 것이 원인이다.
+
+Next.js는 첫 페이지 로드가 SSR로 동작하기 때문에, 서버에서 생성된 컴포넌트와 CSR로 클라이언트에서 생성된 컴포넌트의 클래스명이 서로 달라지게 된다.
+
+만약 CNA(create-next-app)을 사용하고 있다면, 루트 디렉토리에 .babelrc 파일을 만들고 아래와 같이 작성하면 된다.
+
+```js
+{
+  "presets": ["next/babel"],
+  "plugins": [
+    [
+      "babel-plugin-styled-components",
+      {
+        "ssr": true, // SSR을 위한 설정
+        "displayName": true, // 클래스명에 컴포넌트 이름을 붙임
+        "pure": true // dead code elimination (사용되지 않는 속성 제거)
+      }
+    ]
+  ]
+}
+```
+
+Next.js 12버전부터 babel 대신 swc를 사용하여 컴파일하도록 변경되었다
+
+```
+const nextConfig = {
+  compiler: {
+    styledComponents: true,
+  },
+};
+```

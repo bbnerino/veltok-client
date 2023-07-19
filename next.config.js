@@ -4,6 +4,9 @@ const nextConfig = {
   images: {
     domains: ["dubu-server.heyhey.i234.me", "localhost"],
   },
+  compiler: {
+    styledComponents: true,
+  },
   env: {
     BASE_FETCH_URL: process.env.BASE_FETCH_URL,
     BASE_SERVER_URL: process.env.BASE_SERVER_URL,
