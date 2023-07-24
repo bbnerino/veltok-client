@@ -8,9 +8,12 @@ interface Props {
 }
 
 const LoginButton = ({ onClick, type }: Props) => {
-  if (type === "login")
+  if (type === "login") {
     return <LoginWrapper onClick={onClick}>Log In</LoginWrapper>;
-  if (type === "next") return <NextWrapper onClick={onClick}>Next</NextWrapper>;
+  }
+  if (type === "next") {
+    return <NextWrapper onClick={onClick}>Next</NextWrapper>;
+  }
 
   return <SignupWrapper onClick={onClick}>Sign Up</SignupWrapper>;
 };

@@ -1,12 +1,12 @@
 import { LoginForm } from "@/@types/auth/auth.login.form";
 import { AuthService } from "@/@types/auth/auth.service";
 import LoginButton from "@/components/button/login.button";
-import OauthLoginButton from "@/components/button/oauth.button";
 import Input from "@/components/input/input";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { styled } from "styled-components";
+import OauthLoginButton from "./components/google.login";
 
 const LoginPage = () => {
   const router = useRouter();
@@ -23,6 +23,7 @@ const LoginPage = () => {
     } as LoginForm;
     AuthService.login(loginData);
   };
+
   return (
     <Wrapper data-testid="login-page">
       <div className="logo">
@@ -57,9 +58,8 @@ const LoginPage = () => {
         <p>OR</p>
         <div className="line" />
       </Seperator>
-      <OauthWrap>
-        <OauthLoginButton type="google" />
-      </OauthWrap>
+
+      <OauthLoginButton type="google" />
     </Wrapper>
   );
 };
@@ -73,7 +73,7 @@ const Wrapper = styled.section`
     cursor: pointer;
   }
 `;
-const InputWrap = styled.div`
+const InputWrap = styled.form`
   margin: auto;
   margin-top: 5rem;
   width: 400px;
@@ -114,9 +114,5 @@ const Seperator = styled.div`
     background-color: #333;
   }
 `;
-const OauthWrap = styled.div`
-  margin: auto;
-  margin-top: 4rem;
-  width: 400px;
-`;
+
 export default LoginPage;
