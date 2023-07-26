@@ -114,3 +114,14 @@ const nextConfig = {
   },
 };
 ```
+
+
+# cypress
+
+`npx cypress open`
+
+
+Next는 무조건 브라우저에서만 실행되는게 아니기 때문입니다. 
+SSG, ISG로 인해 노드환경상에서도 쓰일수가 있기 때문에 체크가 필요합니다.
+
+webStorage는 window의 객체입니다. 근데 window는 브라우저에 있는 글로벌객체입니다. 그래서 

@@ -1,5 +1,5 @@
-import { AXIOS_AUTH } from "../api/api.auth";
-import { AXIOS_NOAUTH } from "../api/api.no-auth";
+import { AXIOS_AUTH } from "../common/api/api.auth";
+import { AXIOS_NOAUTH } from "../common/api/api.no-auth";
 import { Article } from "./article.entity";
 import { ArticleForm } from "./article.form";
 

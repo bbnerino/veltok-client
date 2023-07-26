@@ -1,4 +1,4 @@
-import { AXIOS_AUTH } from "../api/api.auth";
+import { AXIOS_AUTH } from "../common/api/api.auth";
 
 export const FollowService = {
   getFollowings: async (userId: number) => {

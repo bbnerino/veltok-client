@@ -6,7 +6,6 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { styled } from "styled-components";
-import OauthLoginButton from "./components/google.login";
 
 const LoginPage = () => {
   const router = useRouter();
@@ -39,11 +38,13 @@ const LoginPage = () => {
         <Input
           placeholder="E-mail"
           value={email}
+          data-testid="id-input"
           onChange={(e) => setEmail(e.target.value)}
         />
         <Input
           placeholder="Password"
           value={password}
+          data-testid="pw-input"
           onChange={(e) => setPassword(e.target.value)}
           type="password"
         />
@@ -58,8 +59,6 @@ const LoginPage = () => {
         <p>OR</p>
         <div className="line" />
       </Seperator>
-
-      <OauthLoginButton type="google" />
     </Wrapper>
   );
 };
@@ -73,7 +72,7 @@ const Wrapper = styled.section`
     cursor: pointer;
   }
 `;
-const InputWrap = styled.form`
+const InputWrap = styled.div`
   margin: auto;
   margin-top: 5rem;
   width: 400px;

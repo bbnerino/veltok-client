@@ -1,7 +1,9 @@
-import { AXIOS_AUTH } from "../api/api.auth";
+import { useRouter } from "next/router";
+import { AXIOS_AUTH } from "../common/api/api.auth";
 import { User } from "../user/user.entity";
 import { LoginForm } from "./auth.login.form";
 import { RegisterForm } from "./auth.register.form";
+import { LocalStorage } from "../common/storage/localstorage";
 
 const AUTH_API = "/api/auth";
 
@@ -15,19 +17,25 @@ export const AuthService = {
       formData.append("profileImage", data.profileImage);
     }
 
-    const response = await AXIOS_AUTH.post(`${AUTH_API}/register`, formData);
-    return response.data;
+    const response: User = await AXIOS_AUTH.post(
+      `${AUTH_API}/register`,
+      formData
+    );
+    return response;
   },
 
   login: async (data: LoginForm) => {
-    try {
-      const result = await AXIOS_AUTH.post(`${AUTH_API}/login`, data);
-      localStorage.setItem("token", result.data.token);
-      return { data: result.data as User };
-    } catch (err) {
-      if (typeof err === "string") return { error: err as string };
-      else return { error: "로그인에 실패했습니다." };
-    }
+    await AXIOS_AUTH.post(`${AUTH_API}/login`, data)
+      .then((res) => {
+        if (res.status === 200) {
+          LocalStorage.setItem("token", res.data.token);
+          return (window.location.href = "/");
+        }
+        return alert("로그인에 실패하였습니다.");
+      })
+      .catch((err) => {
+        return alert(err.response.data);
+      });
   },
 
   logout: () => {
